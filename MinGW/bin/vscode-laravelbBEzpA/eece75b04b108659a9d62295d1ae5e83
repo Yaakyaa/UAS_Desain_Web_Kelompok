@@ -1,0 +1,84 @@
+<!-- proposal.blade.php -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tambah Proposal PKL</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@1.14.0/dist/full.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mx-auto px-4">
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="w-full max-w-md">
+            <div class="card bg-base-100 shadow-xl">
+                <div class="card-body">
+                    <h2 class="card-title">{{ __('Tambah Proposal PKL') }}</h2>
+                    
+                    @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    <form method="POST" action="{{ route('proposals.store') }}" enctype="multipart/form-data">
+                        @csrf
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="nama">{{ __('Nama') }}</label>
+                            <input id="nama" type="text" class="input input-bordered @error('nama') input-error @enderror" name="nama" value="{{ old('nama') }}" required>
+                            @error('nama')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="nim">{{ __('NIM') }}</label>
+                            <input id="nim" type="text" class="input input-bordered @error('nim') input-error @enderror" name="nim" value="{{ old('nim') }}" required>
+                            @error('nim')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="prodi">{{ __('Prodi') }}</label>
+                            <input id="prodi" type="text" class="input input-bordered @error('prodi') input-error @enderror" name="prodi" value="{{ old('prodi') }}" required>
+                            @error('prodi')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="judul">{{ __('Judul Proposal') }}</label>
+                            <input id="judul" type="text" class="input input-bordered @error('judul') input-error @enderror" name="judul" value="{{ old('judul') }}" required>
+                            @error('judul')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="deskripsi">{{ __('Deskripsi Proposal') }}</label>
+                            <textarea id="deskripsi" class="textarea textarea-bordered @error('deskripsi') textarea-error @enderror" name="deskripsi" required>{{ old('deskripsi') }}</textarea>
+                            @error('deskripsi')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-control mb-4">
+                            <label class="label" for="file">{{ __('Upload File Proposal') }}</label>
+                            <input id="file" type="file" class="input input-bordered @error('file') input-error @enderror" name="file" required>
+                            @error('file')
+                                <span class="text-error">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">{{ __('Tambah Proposal') }}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
